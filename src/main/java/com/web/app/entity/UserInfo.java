@@ -1,5 +1,6 @@
 package com.web.app.entity;
 
+import com.web.app.common.WebRole;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ public class UserInfo {
     @Id
     @Column(name = "USER_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    private Long userId;
 
     @Column(name = "FULLNAME")
     private String fullName;
@@ -31,5 +32,5 @@ public class UserInfo {
     private boolean isBlock;
 
     @Column(name = "ROLE")
-    private String role;
+    private WebRole role;
 }
