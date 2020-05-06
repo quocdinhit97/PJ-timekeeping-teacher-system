@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="https://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{fragments/main_layout}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <form action="#" th:action="@{/updateUser/{userId}(userId=${user.userId})}" th:object="${user}" method="post">
+
+        <div class="form-group">
+            <label for="fullName" class="form-control-lavel">Full Name</label>
+            <input type="text" class="form-control" th:field="*{fullName}" id="fullName"/>
+            <div class="text text-danger" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="username" class="form-control-lavel">Username</label>
+            <input type="text" class="form-control" th:field="*{username}" id="username" disabled/>
+            <div class="text text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="form-control-lavel">Password</label>
+            <input type="text" class="form-control" th:field="*{password}" id="password"/>
+            <div class="text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="email" class="form-control-lavel">Email</label>
+            <input type="text" class="form-control" th:field="*{email}" id="email"/>
+            <div class="text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
+
+        <input type="submit" value="submit" class="btn btn-primary">
+    </form>
+</div>
+</body>
+</html>

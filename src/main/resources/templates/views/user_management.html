@@ -10,55 +10,49 @@
 </head>
 <body>
 <div layout:fragment="content" class="container">
+    <div class="alert alert-success" th:if="${success}">
+        <p class="text text-center">
+            Success
+        </p>
+    </div>
     <div class="row">
         <div class="col-10"></div>
         <div class="col-2">
-            <button class="btn btn-success">
+            <a class="btn btn-success" th:href="@{/register}">
                 Add new user
-            </button>
+            </a>
         </div>
     </div>
     <div class="row">
         <table class="table table-hover" id="user-table">
             <thead>
             <tr>
-                <th scope="col">Type</th>
-                <th scope="col">Column heading</th>
-                <th scope="col">Column heading</th>
-                <th scope="col">Column heading</th>
+                <th scope="col">User Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Username</th>
+                <th scope="col">Status</th>
+                <th>Block/Unlock</th>
+                <th>Edit</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">Default</th>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
+            <tr th:each="user:${users}">
+                <td th:text="${user.userId}"></td>
+                <td th:text="${user.fullName}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.isBlock} ? 'BLOCK' : 'ACTIVE'"> BLOCK </td>
+
+                <td>
+                    <a th:href="@{/lockUnlock/{userId}(userId=${user.userId})}" class="btn btn-primary" th:text="${user.isBlock} ? 'ACTIVE' : 'BLOCK'"></a>
+                </td>
+                <td>
+                    <a th:href="@{/updateUser/{userId}(userId=${user.userId})}" class="btn btn-primary">Edit</a>
+                </td>
             </tr>
-            <tr>
-                <th scope="row">Default</th>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr>
-                <th scope="row">Default</th>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr>
-                <th scope="row">Default</th>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr>
-                <th scope="row">Default</th>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
+
+
             </tbody>
         </table>
     </div>

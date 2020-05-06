@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserInfoService {
 
@@ -31,4 +33,10 @@ public class UserInfoService {
     public boolean isUserPresent(String username){
         return findOneByUsername(username) == null ? false : true;
     }
+
+    public List<UserInfo> findAllUser(){
+        return userInfoRepository.findAll();
+    }
+
+    public UserInfo findUserById(Long userId){ return userInfoRepository.findById(userId).get(); };
 }
