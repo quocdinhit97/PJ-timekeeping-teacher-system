@@ -17,12 +17,24 @@ public class UserInfoController {
     @Autowired
     UserInfoService userInfoService;
 
+    //-------------------router--------------//
     @GetMapping("/register")
     public String registerForm(Model model){
         model.addAttribute("createUserRequest", new CreateUserRequest());
         return "views/registerForm";
     }
 
+    @GetMapping("/timeSheet")
+    public String timeSheet(){
+        return "views/user_time_sheet";
+    }
+
+    @GetMapping("/userManagement")
+    public String userManagement(){
+        return "views/user_management";
+    }
+
+    //---------------function----------------//
     @PostMapping("/register")
     public String registerUser(@Valid CreateUserRequest request, BindingResult result, Model model){
         if(result.hasErrors()){
