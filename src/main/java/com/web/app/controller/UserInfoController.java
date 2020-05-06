@@ -1,6 +1,5 @@
 package com.web.app.controller;
 
-import com.web.app.entity.UserInfo;
 import com.web.app.request.CreateUserRequest;
 import com.web.app.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ public class UserInfoController {
 
     @GetMapping("/register")
     public String registerForm(Model model){
-        model.addAttribute("userInfo", new UserInfo());
+        model.addAttribute("createUserRequest", new CreateUserRequest());
         return "views/registerForm";
     }
 
@@ -30,7 +29,7 @@ public class UserInfoController {
             return "views/registerForm";
         }
 
-        if(userInfoService.isUserPresent(request.getUserName())){
+        if(userInfoService.isUserPresent(request.getUsername())){
             model.addAttribute("exist", true);
             return "views/registerForm";
         }

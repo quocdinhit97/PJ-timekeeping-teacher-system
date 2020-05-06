@@ -15,13 +15,13 @@ public class UserInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    @Column(name = "FULLNAME")
+    @Column(name = "FULLNAME", nullable = false)
     private String fullName;
 
-    @Column(name = "USERNAME")
+    @Column(name = "USERNAME", nullable = false)
     private String username;
 
-    @Column(name = "PASSWORD")
+    @Column(name = "PASSWORD", nullable = false)
     private String password;
 
     @Column(name = "EMAIL")
@@ -29,8 +29,9 @@ public class UserInfo {
     private String email;
 
     @Column(name = "IS_BLOCK")
-    private boolean isBlock;
+    private Boolean isBlock = false;
 
     @Column(name = "ROLE")
-    private WebRole role;
+    @Enumerated(EnumType.STRING)
+    private WebRole role = WebRole.USER;
 }

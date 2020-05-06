@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html
-        xmlns:th="http://www.thymeleaf.org"
+        xmlns:th="https://www.thymeleaf.org"
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorate="~{fragments/main_layout}"
 >
@@ -15,7 +15,7 @@
                 User already exist
             </p>
         </div>
-        <form action="#" th:action="@{/register}" th:object="${userInfo}" method="post">
+        <form action="#" th:action="@{/register}" th:object="${createUserRequest}" method="post">
 
             <div class="form-group">
                 <label for="fullName" class="form-control-lavel">Full Name</label>

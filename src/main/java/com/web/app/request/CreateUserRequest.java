@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 public class CreateUserRequest {
     @NotEmpty(message = "Please enter a valid username")
-    private String userName;
+    private String username;
     @NotEmpty(message = "Please enter a valid password")
     private String password;
     @NotEmpty(message = "Please enter a valid full name")

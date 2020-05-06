@@ -1,6 +1,5 @@
 package com.web.app.service;
 
-import com.web.app.common.WebRole;
 import com.web.app.entity.UserInfo;
 import com.web.app.repository.UserInfoRepository;
 import com.web.app.request.CreateUserRequest;
@@ -17,11 +16,9 @@ public class UserInfoService {
     public void createUser (CreateUserRequest createUserRequest){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         UserInfo userInfo = new UserInfo();
-        userInfo.setUsername(createUserRequest.getUserName());
+        userInfo.setUsername(createUserRequest.getUsername());
         userInfo.setEmail(createUserRequest.getEmail());
-        userInfo.setBlock(false);
         userInfo.setFullName(createUserRequest.getFullName());
-        userInfo.setRole(WebRole.USER);
         userInfo.setPassword(encoder.encode(createUserRequest.getPassword()));
 
         userInfoRepository.save(userInfo);
