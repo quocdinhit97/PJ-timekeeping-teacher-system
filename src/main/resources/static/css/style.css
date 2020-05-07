@@ -8,7 +8,7 @@
     text-align: center;
 }
 
-#user-table_wrapper{
+#user-table_wrapper, #time-sheet_wrapper{
     width: 100%;
 }
 

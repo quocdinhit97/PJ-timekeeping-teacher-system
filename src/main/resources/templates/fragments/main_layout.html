@@ -39,6 +39,25 @@
                 }
             ]
         });
+
+        $('#time-sheet').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    text: 'Export to excel',
+                    sheetName: 'timeSheet',
+                    title: 'time sheet',
+                    exportOptions: {
+                        modifier: {
+                            page: 'all'
+                        },
+                        columns: [0,1,2,3,4]
+                    }
+
+                }
+            ]
+        });
     } );
 </script>
 </html>

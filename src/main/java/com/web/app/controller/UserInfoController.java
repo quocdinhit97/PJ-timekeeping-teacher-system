@@ -34,11 +34,6 @@ public class UserInfoController {
         return "views/register_form";
     }
 
-    @GetMapping("/timeSheet")
-    public String timeSheet(){
-        return "views/user_time_sheet";
-    }
-
     @GetMapping("/userManagement")
     public String userManagement(Model model){
         model.addAttribute("users", userInfoService.findAllUser());
