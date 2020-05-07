@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}">
     <script th:src="@{/webjars/jquery/dist/jquery.js}"></script>
     <script th:src="@{/webjars/bootstrap/dist/js/bootstrap.js}"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-html5-1.6.1/datatables.min.css"/>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-html5-1.6.1/datatables.min.js"></script>
+
 </head>
 <body>
     <div th:replace="fragments/header :: header"></div>
@@ -15,4 +19,26 @@
 
     <div th:replace="fragments/footer :: footer"></div>
 </body>
+<script>
+    $(document).ready(function() {
+        $('#user-table').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    text: 'Export to excel',
+                    sheetName: 'Teacher',
+                    title: 'Teacher list',
+                    exportOptions: {
+                        modifier: {
+                            page: 'all'
+                        },
+                        columns: [0,1,2,3,4]
+                    }
+
+                }
+            ]
+        });
+    } );
+</script>
 </html>

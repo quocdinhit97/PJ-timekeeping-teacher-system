@@ -9,7 +9,7 @@
     <title>User Management</title>
 </head>
 <body>
-<div layout:fragment="content" class="container">
+<div layout:fragment="content" class="container mt-3">
     <div class="alert alert-success" th:if="${success}">
         <p class="text text-center">
             Success
@@ -19,20 +19,20 @@
         <div class="col-10"></div>
         <div class="col-2">
             <a class="btn btn-success" th:href="@{/register}">
-                Add new user
+                Add new Teacher
             </a>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <table class="table table-hover" id="user-table">
             <thead>
             <tr>
-                <th scope="col">User Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Username</th>
-                <th scope="col">Status</th>
-                <th>Block/Unlock</th>
+                <th>Teacher Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Status</th>
+                <th>Lock/Unlock</th>
                 <th>Edit</th>
             </tr>
             </thead>
@@ -45,14 +45,12 @@
                 <td th:text="${user.isBlock} ? 'BLOCK' : 'ACTIVE'"> BLOCK </td>
 
                 <td>
-                    <a th:href="@{/lockUnlock/{userId}(userId=${user.userId})}" class="btn btn-primary" th:text="${user.isBlock} ? 'ACTIVE' : 'BLOCK'"></a>
+                    <a th:href="@{/lockUnlock/{userId}(userId=${user.userId})}" class="btn btn-primary" th:text="${user.isBlock} ? 'UNLOCK' : 'LOCK'"></a>
                 </td>
                 <td>
-                    <a th:href="@{/updateUser/{userId}(userId=${user.userId})}" class="btn btn-primary">Edit</a>
+                    <a th:href="@{/updateUser/{userId}(userId=${user.userId})}" class="btn btn-warning">Edit</a>
                 </td>
             </tr>
-
-
             </tbody>
         </table>
     </div>

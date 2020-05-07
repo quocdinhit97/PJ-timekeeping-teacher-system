@@ -1,6 +1,7 @@
 package com.web.app.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.web.app.common.TimeSheetStatus;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -45,6 +46,10 @@ public class TimeSheet {
 
     @Column(name = "NOTE")
     private String note;
+
+    @Column(name = "STATUS")
+    @Enumerated(EnumType.STRING)
+    private TimeSheetStatus status = TimeSheetStatus.APPROVE;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
