@@ -22,7 +22,6 @@ public class TimeSheetService {
         timeSheet.setNote(createTimeSheetRequest.getNote());
         timeSheet.setStudent(createTimeSheetRequest.getStudent());
         timeSheet.setTeachDate(createTimeSheetRequest.getTeachDate());
-        timeSheet.setUserInfo(createTimeSheetRequest.getUserInfo());
         double totalTime = timeSheet.hours();
         timeSheet.setTotalTime(totalTime);
 

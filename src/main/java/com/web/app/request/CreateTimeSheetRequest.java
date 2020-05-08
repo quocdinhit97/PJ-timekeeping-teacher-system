@@ -1,10 +1,8 @@
 package com.web.app.request;
 
-import com.web.app.entity.UserInfo;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
-import java.sql.Time;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -32,6 +30,4 @@ public class CreateTimeSheetRequest {
     @NotNull
     private String note;
 
-    @NotNull
-    private UserInfo userInfo;
 }

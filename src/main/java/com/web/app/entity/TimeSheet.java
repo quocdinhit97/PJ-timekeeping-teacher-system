@@ -9,6 +9,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.time.Duration;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Date;
 
 @Entity
@@ -20,14 +22,15 @@ public class TimeSheet {
     private Long Id;
 
     @Column(name = "TEACH_DATE")
+    @Temporal(TemporalType.DATE)
     private Date teachDate;
 
     @Column(name = "FROM_TIME")
-    @JsonFormat(pattern = "HH:mm")
+    @JsonFormat(pattern = "HH:ss")
     private LocalTime fromTime;
 
     @Column(name = "TO_TIME")
-    @JsonFormat(pattern = "HH:mm")
+    @JsonFormat(pattern = "HH:ss")
     private LocalTime toTime;
 
     @Column(name = "TOTAL_TIME")

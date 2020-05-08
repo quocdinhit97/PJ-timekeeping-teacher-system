@@ -8,10 +8,9 @@
     <script th:src="@{/webjars/jquery/dist/jquery.js}"></script>
     <script th:src="@{/webjars/bootstrap/dist/js/bootstrap.js}"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-html5-1.6.1/datatables.min.css"/>
-
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-html5-1.6.1/datatables.min.js"></script>
-
 </head>
+
 <body>
     <div th:replace="fragments/header :: header"></div>
 
@@ -39,15 +38,22 @@
                 }
             ]
         });
+//-----------------------------------------------------------------//
+        const today = new Date();
+        const teachDate = document.getElementById("teach-date");
+        const currentMoth = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2)
+        teachDate.value = currentMoth;
+        teachDate.max = currentMoth;
 
-        $('#time-sheet').DataTable({
+        let titleFile = "Please enter your file name";
+        const table = $('#time-sheet').DataTable({
             dom: 'Bfrtip',
             buttons: [
                 {
                     extend: 'excelHtml5',
                     text: 'Export to excel',
-                    sheetName: 'timeSheet',
-                    title: 'time sheet',
+                    sheetName: "TimeSheet",
+                    title: titleFile,
                     exportOptions: {
                         modifier: {
                             page: 'all'
@@ -58,6 +64,14 @@
                 }
             ]
         });
+
+        $('#teacher').on( 'change', function () {
+            table.column(1).search( this.value ).draw();
+        } );
+        $('#teach-date').on( 'change', function () {
+            table.column(2).search( this.value ).draw();
+        } );
+
     } );
 </script>
 </html>

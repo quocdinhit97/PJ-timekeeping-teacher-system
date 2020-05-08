@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="https://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{fragments/main_layout}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Create new time sheet</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <form action="#" th:action="@{/createTimeSheet}" th:object="${request}" method="post">
+
+        <div class="form-group">
+            <label for="teachDate" class="form-control-lavel">Date</label>
+            <input type="text" class="form-control" th:field="*{teachDate}" id="teachDate"/>
+            <div class="text text-danger" th:if="${#fields.hasErrors('teachDate')}" th:errors="*{teachDate}"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="fromTime" class="form-control-lavel">From Time</label>
+            <input type="text" class="form-control" th:field="*{fromTime}" id="fromTime"/>
+            <div class="text text-danger" th:if="${#fields.hasErrors('fromTime')}" th:errors="*{fromTime}"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="toTime" class="form-control-lavel">To Time</label>
+            <input type="text" class="form-control" th:field="*{toTime}" id="toTime"/>
+            <div class="text text-danger" th:if="${#fields.hasErrors('toTime')}" th:errors="*{toTime}"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="contentTitle" class="form-control-lavel">Title</label>
+            <input type="text" class="form-control" th:field="*{contentTitle}" id="contentTitle"/>
+            <div class="text text-danger" th:if="${#fields.hasErrors('contentTitle')}"
+                 th:errors="*{contentTitle}"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="description" class="form-control-lavel">Description</label>
+            <input type="text" class="form-control" th:field="*{description}" id="description"/>
+            <div class="text text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="note" class="form-control-lavel">Note</label>
+            <input type="text" class="form-control" th:field="*{note}" id="note"/>
+            <div class="text text-danger" th:if="${#fields.hasErrors('note')}" th:errors="*{note}"></div>
+        </div>
+        <input type="submit" value="submit" class="btn btn-primary">
+    </form>
+</div>
+</body>
+</html>
