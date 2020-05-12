@@ -64,7 +64,7 @@ public class UserInfoController {
         userInfoService.createUser(request);
         model.addAttribute("success", true);
         model.addAttribute("users", userInfoService.findAllUser());
-        return "views/user_management";
+        return "redirect:/admin/userManagement";
 
     }
 

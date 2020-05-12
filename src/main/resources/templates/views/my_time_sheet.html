@@ -22,7 +22,7 @@
             </form>
         </div>
         <div class="col-2">
-            <a th:href="@{/teacher/createTimeSheet}" class="btn btn-primary">Log time</a>
+            <a th:href="@{/teacher/createTimeSheet}" class="btn btn-success">Log time</a>
         </div>
     </div>
     <div class="row mt-3">
@@ -38,7 +38,6 @@
                 <th>Description</th>
                 <th>Student</th>
                 <th>Note</th>
-                <th>Edit</th>
             </tr>
             </thead>
             <tbody>
@@ -52,9 +51,6 @@
                 <td th:text="${timesheet.description}"></td>
                 <td th:text="${timesheet.student}"></td>
                 <td th:text="${timesheet.note}"></td>
-                <td>
-                    <a th:href="@{/update/{timSheetId}(timSheetId=${timesheet.id})}" class="btn btn-primary">Update</a>
-                </td>
             </tr>
 
             </tbody>

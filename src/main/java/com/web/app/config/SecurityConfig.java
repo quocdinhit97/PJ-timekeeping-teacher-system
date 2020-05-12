@@ -19,11 +19,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers( "/webjars/**", "/css/**").permitAll()
+        http.authorizeRequests().antMatchers( "/webjars/**", "/css/**", "/logo.png").permitAll()
                 .antMatchers("/teacher", "teacher/*", "/teacher/**").hasRole("USER")
                 .antMatchers("/admin","/admin/*","/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll()
-                .defaultSuccessUrl("/admin/userManagement").and().logout().logoutSuccessUrl("/login");
+                .defaultSuccessUrl("/").and().logout().logoutSuccessUrl("/login");
     }
 
     @Override
