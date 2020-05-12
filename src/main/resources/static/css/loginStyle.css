@@ -209,6 +209,10 @@ input[type=text]:placeholder {
     -webkit-animation-delay: 0.4s;
     -moz-animation-delay: 0.4s;
     animation-delay: 0.4s;
+    left: 175px;
+    top: -33px;
+    width: 110px;
+    position: absolute;
 }
 
 .fadeIn.second {
@@ -249,7 +253,9 @@ input[type=text]:placeholder {
     width: 100%;
 }
 
-
+#form-style{
+    padding-top: 50px;
+}
 
 /* OTHERS */
 
