@@ -26,6 +26,14 @@
                         <label class="col-form-label mr-2" for="teach-date">Month</label>
                         <input type="month" class="form-control" id="teach-date">
                     </div>
+                    <div class="form-group mr-4">
+                        <label class="col-form-label mr-2" for="status_timeSheet">Status</label>
+                        <select id="status_timeSheet" class="form-control">
+                            <option value="" selected>All</option>
+                            <option value="Approve">Approve</option>
+                            <option value="Reject">Reject</option>
+                        </select>
+                    </div>
                 </div>
             </form>
         </div>
@@ -46,6 +54,7 @@
                 <th>Description</th>
                 <th>Student</th>
                 <th>Note</th>
+                <th>Status</th>
                 <th>Edit</th>
             </tr>
             </thead>
@@ -59,9 +68,13 @@
                <td th:text="${timesheet.contentTitle}"></td>
                <td th:text="${timesheet.description}"></td>
                <td th:text="${timesheet.student}"></td>
-               <td th:text="${timesheet.note}"></td>
+                <td th:text="${timesheet.note}"></td>
+               <td><span th:class="${timesheet.status.equals(timesheet.status.APPROVE)}
+                                    ? 'badge badge-pill badge-success'
+                                    : 'badge badge-pill badge-warning'"
+                         th:text="${timesheet.status}"></span></td>
                 <td>
-                    <a th:href="@{/update/{timSheetId}(timSheetId=${timesheet.id})}" class="btn btn-primary">Update</a>
+                    <a th:href="@{timeSheet/update/{timSheetId}(timSheetId=${timesheet.id})}" class="btn btn-primary" th:text="${timesheet.status.equals(timesheet.status.APPROVE)} ? 'Reject' : 'Approve'"></a>
                 </td>
             </tr>
 
