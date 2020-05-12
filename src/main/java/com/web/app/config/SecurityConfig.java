@@ -1,10 +1,8 @@
 package com.web.app.config;
 
-import com.web.app.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,8 +20,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers( "/webjars/**", "/css/**").permitAll()
+                .antMatchers("/teacher", "teacher/*", "/teacher/**").hasRole("USER")
+                .antMatchers("/admin","/admin/*","/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll()
-                .defaultSuccessUrl("/userManagement").and().logout().logoutSuccessUrl("/login");
+                .defaultSuccessUrl("/admin/userManagement").and().logout().logoutSuccessUrl("/login");
     }
 
     @Override

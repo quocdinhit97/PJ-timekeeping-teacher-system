@@ -1,4 +1,4 @@
-<header xmlns:th="http://www.thymeleaf.org" th:fragment="header">
+<header xmlns:th="http://www.thymeleaf.org" th:fragment="header" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="/index">
@@ -9,19 +9,23 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/myTimeSheet">My time sheet</a>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
+                        <a class="nav-link" href="/teacher/myTimeSheet">My time sheet</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/userManagement">Teacher</a>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link" href="/admin/userManagement">Teacher</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/timeSheet">Management time sheet</a>
+                    <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                        <a class="nav-link" href="/admin/timeSheet">Management time sheet</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                         <a class="nav-link" href="#">About</a>
                     </li>
                 </ul>
+
+                <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
+                    <button class="btn btn-warning my-2 my-sm-0" type="submit">Logout</button>
+                </form>
             </div>
         </div>
     </nav>

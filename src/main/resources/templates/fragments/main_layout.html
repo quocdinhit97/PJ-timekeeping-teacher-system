@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+        xmlns:sec="http://www.thyeleaf.org/extras/spring-security"
+>
 <head>
     <meta charset="UTF-8">
     <title>App demo</title>
@@ -41,9 +43,18 @@
 //-----------------------------------------------------------------//
         const today = new Date();
         const teachDate = document.getElementById("teach-date");
-        const currentMoth = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2)
-        teachDate.value = currentMoth;
-        teachDate.max = currentMoth;
+        if(teachDate !== undefined && teachDate !== null){
+            const currentMoth = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2)
+            teachDate.value = currentMoth;
+            teachDate.max = currentMoth;
+        }
+
+        const teachDateCreateForm = document.getElementById("teachDate");
+       if(teachDateCreateForm !== undefined &&  teachDateCreateForm !== null){
+           const currentDate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+           teachDateCreateForm.value = currentDate;
+           teachDateCreateForm.max = currentDate;
+       }
 
         let titleFile = "Please enter your file name";
         const table = $('#time-sheet').DataTable({
@@ -58,7 +69,7 @@
                         modifier: {
                             page: 'all'
                         },
-                        columns: [0,1,2,3,4]
+                        columns: [1,2,3,4,5,6,7,8]
                     }
 
                 }

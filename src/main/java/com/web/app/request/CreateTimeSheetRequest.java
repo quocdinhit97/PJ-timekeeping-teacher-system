@@ -2,6 +2,7 @@ package com.web.app.request;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalTime;
 import java.util.Date;
@@ -9,25 +10,23 @@ import java.util.Date;
 @Data
 public class CreateTimeSheetRequest {
 
-    @NotNull
-    private Date teachDate;
+    private String teachDate;
 
-    @NotNull
-    private LocalTime fromTime;
+    @NotEmpty(message = "Please provide from time")
+    private String fromTime;
 
-    @NotNull
-    private LocalTime toTime;
+    @NotEmpty(message = "Please provide to time")
+    private String toTime;
 
-    @NotNull
+    @NotNull(message = "Please provide student")
     private String student;
 
-    @NotNull
+    @NotEmpty(message = "Please provide title")
     private String contentTitle;
 
-    @NotNull
+    @NotEmpty(message = "Please provide description")
     private String description;
 
-    @NotNull
     private String note;
 
 }

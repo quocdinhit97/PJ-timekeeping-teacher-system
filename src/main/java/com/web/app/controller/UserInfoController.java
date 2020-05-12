@@ -28,19 +28,19 @@ public class UserInfoController {
 
 
     //-------------------router--------------//
-    @GetMapping("/register")
+    @GetMapping("/admin/register")
     public String registerForm(Model model){
         model.addAttribute("createUserRequest", new CreateUserRequest());
         return "views/register_form";
     }
 
-    @GetMapping("/userManagement")
+    @GetMapping("/admin/userManagement")
     public String userManagement(Model model){
         model.addAttribute("users", userInfoService.findAllUser());
         return "views/user_management";
     }
 
-    @GetMapping("updateUser/{userId}")
+    @GetMapping("/admin/updateUser/{userId}")
     public String showEditForm(Model model, @PathVariable Long userId){
         UserInfo userInfo = userInfoRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid User Id: "+ userId));
@@ -50,7 +50,7 @@ public class UserInfoController {
     }
 
     //---------------function----------------//
-    @PostMapping("/register")
+    @PostMapping("/admin/register")
     public String registerUser(@Valid CreateUserRequest request, BindingResult result, Model model){
         if(result.hasErrors()){
             return "views/register_form";
@@ -68,16 +68,16 @@ public class UserInfoController {
 
     }
 
-    @GetMapping("/lockUnlock/{userId}")
+    @GetMapping("/admin/lockUnlock/{userId}")
     public RedirectView lockUnlock(@PathVariable Long userId, Model model){
         UserInfo userInfo = userInfoService.findUserById(userId);
         userInfo.setIsBlock(!userInfo.getIsBlock());
         userInfoRepository.save(userInfo);
         model.addAttribute("users", userInfoService.findAllUser());
-        return new RedirectView("/userManagement");
+        return new RedirectView("admin/userManagement");
     }
 
-    @PostMapping("/updateUser/{userId}")
+    @PostMapping("/admin/updateUser/{userId}")
     public String updateUser(@PathVariable Long userId, @Valid UpdateUserRequest request, BindingResult result, Model model){
 
         UserInfo userInfo = userInfoRepository.findById(userId)

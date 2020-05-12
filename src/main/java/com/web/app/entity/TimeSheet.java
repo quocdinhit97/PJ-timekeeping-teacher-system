@@ -1,16 +1,11 @@
 package com.web.app.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.web.app.common.TimeSheetStatus;
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import java.time.Duration;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.Date;
 
 @Entity
@@ -26,12 +21,12 @@ public class TimeSheet {
     private Date teachDate;
 
     @Column(name = "FROM_TIME")
-    @JsonFormat(pattern = "HH:ss")
-    private LocalTime fromTime;
+    @Temporal(TemporalType.TIME)
+    private Date fromTime;
 
     @Column(name = "TO_TIME")
-    @JsonFormat(pattern = "HH:ss")
-    private LocalTime toTime;
+    @Temporal(TemporalType.TIME)
+    private Date toTime;
 
     @Column(name = "TOTAL_TIME")
     @Max(3)
@@ -58,11 +53,4 @@ public class TimeSheet {
     @JoinColumn(name = "USER_ID")
     private UserInfo userInfo;
 
-    public Long minutes() {
-        return Duration.between(getFromTime(), getToTime()).toMinutes();
-    }
-
-    public double hours() {
-        return minutes() / 60d;
-    }
 }

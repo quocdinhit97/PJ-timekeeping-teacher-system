@@ -10,7 +10,7 @@
 </head>
 <body>
 <div layout:fragment="content" class="container">
-    <form action="#" th:action="@{/updateUser/{userId}(userId=${user.userId})}" th:object="${user}" method="post">
+    <form action="#" th:action="@{/admin/updateUser/{userId}(userId=${user.userId})}" th:object="${user}" method="post">
 
         <div class="form-group">
             <label for="fullName" class="form-control-lavel">Full Name</label>
