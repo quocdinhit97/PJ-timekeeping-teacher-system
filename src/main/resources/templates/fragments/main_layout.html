@@ -3,7 +3,7 @@
         xmlns:sec="http://www.thyeleaf.org/extras/spring-security"
 >
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" content="text/html; charset=UTF-8">
     <title>App demo</title>
     <link rel="stylesheet" href="../../static/css/litera/bootstrap.min.css" th:href="@{/css/litera/bootstrap.min.css}">
     <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}">
@@ -82,7 +82,9 @@
         $('#teach-date').on( 'change', function () {
             table.column(2).search( this.value ).draw();
         } );
-
+        $('#status_timeSheet').on( 'change', function () {
+            table.column(9).search( this.value ).draw();
+        } );
     } );
 </script>
 </html>

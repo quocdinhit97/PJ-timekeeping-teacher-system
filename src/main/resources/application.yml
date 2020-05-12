@@ -2,11 +2,9 @@ server:
   port: 8090
 spring:
   datasource:
-    continue-on-error: true
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://node224119-env-teaching.j.layershift.co.uk/teaching_salary
+    url: jdbc:mysql://localhost:3306/teaching_salary?serverTimezone=UTC&useUnicode=yes&characterEncoding=UTF-8
     username: root
-    password: VIAkaa12248
+    password: root
   jpa:
     show-sql: true
   security:

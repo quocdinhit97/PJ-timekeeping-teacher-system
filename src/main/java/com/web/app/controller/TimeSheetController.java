@@ -1,6 +1,5 @@
 package com.web.app.controller;
 
-import com.web.app.entity.TimeSheet;
 import com.web.app.entity.UserInfo;
 import com.web.app.repository.TimeSheetRepository;
 import com.web.app.repository.UserInfoRepository;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -77,5 +75,23 @@ public class TimeSheetController {
         model.addAttribute("timeSheetList", timeSheetRepository.findAll());
         return "views/user_time_sheet";
     }
+
+    @GetMapping("/timeSheet/update/{timSheetId}")
+    public RedirectView updateStatusTimeSheet(Model model, @PathVariable Long timSheetId){
+
+        TimeSheet timeSheet = timeSheetRepository.findById(timSheetId).get();
+
+        if (timeSheet.getStatus().equals(TimeSheetStatus.APPROVE)) {
+            timeSheet.setStatus(TimeSheetStatus.REJECT);
+        } else {
+            timeSheet.setStatus(TimeSheetStatus.APPROVE);
+        }
+
+        timeSheetRepository.save(timeSheet);
+        model.addAttribute("userList", userInfoRepository.findAll());
+        model.addAttribute("timeSheetList", timeSheetRepository.findAll());
+        return new RedirectView("/timeSheet");
+    }
+
 
 }
