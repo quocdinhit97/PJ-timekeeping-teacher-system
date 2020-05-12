@@ -79,7 +79,7 @@ public class TimeSheetController {
         return "views/user_time_sheet";
     }
 
-    @GetMapping("/timeSheet/update/{timSheetId}")
+    @GetMapping("admin/timeSheet/update/{timSheetId}")
     public RedirectView updateStatusTimeSheet(Model model, @PathVariable Long timSheetId){
 
         TimeSheet timeSheet = timeSheetRepository.findById(timSheetId).get();
@@ -93,6 +93,6 @@ public class TimeSheetController {
         timeSheetRepository.save(timeSheet);
         model.addAttribute("userList", userInfoRepository.findAll());
         model.addAttribute("timeSheetList", timeSheetRepository.findAll());
-        return new RedirectView("/timeSheet");
+        return new RedirectView("/admin/timeSheet");
     }
 }
