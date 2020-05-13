@@ -56,7 +56,7 @@
            teachDateCreateForm.max = currentDate;
        }
 
-        let titleFile = "Please enter your file name";
+        let titleFileTimeSheet = "Time Sheet of month";
         const table = $('#time-sheet').DataTable({
             dom: 'Bfrtip',
             buttons: [
@@ -64,7 +64,7 @@
                     extend: 'excelHtml5',
                     text: 'Export to excel',
                     sheetName: "TimeSheet",
-                    title: titleFile,
+                    title: titleFileTimeSheet,
                     exportOptions: {
                         modifier: {
                             page: 'all'

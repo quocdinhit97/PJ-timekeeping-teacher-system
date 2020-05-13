@@ -30,10 +30,10 @@
             <thead>
             <tr>
                 <th>#ID</th>
-                <th>Teacher</th>
                 <th>Date</th>
                 <th>From time</th>
                 <th>To time</th>
+                <th>Total time</th>
                 <th>Title</th>
                 <th>Description</th>
                 <th>Student</th>
@@ -43,10 +43,10 @@
             <tbody>
             <tr th:each="timesheet:${userTimeSheet}">
                 <td th:text="${timesheet.id}"></td>
-                <td th:text="${timesheet.userInfo.fullName}"></td>
                 <td th:text="${timesheet.teachDate}"></td>
                 <td th:text="${timesheet.fromTime}"></td>
                 <td th:text="${timesheet.toTime}"></td>
+                <td th:text="${timesheet.totalTime}"></td>
                 <td th:text="${timesheet.contentTitle}"></td>
                 <td th:text="${timesheet.description}"></td>
                 <td th:text="${timesheet.student}"></td>

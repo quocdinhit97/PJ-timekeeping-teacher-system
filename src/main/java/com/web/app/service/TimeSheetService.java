@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Service
 public class TimeSheetService {
@@ -32,10 +33,15 @@ public class TimeSheetService {
         timeSheet.setTeachDate(formatter.parse(createTimeSheetRequest.getTeachDate()));
         timeSheet.setTotalTime(2);
         timeSheet.setUserInfo(userInfo);
-//        double totalTime = timeSheet.hours();
-//        timeSheet.setTotalTime(totalTime);
+
+        Date fromTime = formatterTime.parse(createTimeSheetRequest.getFromTime());
+        Date toTime = formatterTime.parse(createTimeSheetRequest.getToTime());
+        double totalTime = (toTime.getTime() - fromTime.getTime()) / (double)(60 * 60 * 1000) % 24;
+
+        if (totalTime > 0){
+            timeSheet.setTotalTime(totalTime);
+        }
 
         timeSheetRepository.save(timeSheet);
-
     }
 }
