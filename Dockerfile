@@ -1,17 +1,15 @@
-FROM openjdk:8-jdk
+#EVR
+FROM openjdk:8-jre
+VOLUME /tmp
 
-ARG ENV
-ARG VERSION
-ARG PORT
+#Set default port for container
+EXPOSE 8010
 
-ENV PROFILE_ACTIVE=${ENV}
-ENV VERSION_TAG=${VERSION}
-ENV EXPOSE_PORT=${PORT}
+#Define path jar file
+ARG JAR_FILE=target/demo-0.0.1-SNAPSHOT.jar
 
-WORKDIR /app
+#Copy jar file to app.jar
+ADD  ${JAR_FILE} app.jar
 
-EXPOSE ${EXPOSE_PORT}
-
-ADD target/lms-service-$VERSION_TAG.jar /app/lms-service-$VERSION_TAG.jar
-
-ENTRYPOINT [ "sh", "-c", "java -jar -Dspring.profiles.active=$PROFILE_ACTIVE -Dserver.port=$EXPOSE_PORT /app/lms-service-$VERSION_TAG.jar"]
+#Execute file jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
