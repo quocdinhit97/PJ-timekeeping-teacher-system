@@ -2,6 +2,9 @@ node {
     currentBuild.result = "SUCCESS"
     try {
 
+        tools {
+            maven 'Maven 3.8.1'
+        }
         stage('Checkout'){
             checkout scm
         }
